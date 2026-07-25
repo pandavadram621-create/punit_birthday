@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love Punit 💖</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Poppins:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<!-- CSS File Link -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ⏳ Birthday Countdown Screen -->
+<div id="birthdayCountdownScreen">
+  <div class="countdown-box">
+    <h2>Punit's Birthday Countdown ⏳🎂</h2>
+    <p class="heart-quote">"Bas thoda sa intezar aur... Phir khulega ek pyaara surprise! 💖"</p>
+    
+    <div class="timer-display">
+      <div class="time-card"><span id="cd-days">00</span><p>Days</p></div>
+      <div class="time-card"><span id="cd-hours">00</span><p>Hours</p></div>
+      <div class="time-card"><span id="cd-mins">00</span><p>Mins</p></div>
+      <div class="time-card"><span id="cd-secs">00</span><p>Secs</p></div>
+    </div>
+
+    <button class="test-bypass-btn" onclick="bypassCountdown()">Bypass Timer (For Testing) 🔓</button>
+  </div>
+</div>
+
+<button class="theme-toggle-btn" onclick="toggleCandlelightMode()">🕯️ Candlelight Theme</button>
+
+<!-- 🔐 Password Screen -->
+<div id="passwordScreen">
+  <div class="pass-box">
+    <h3>Unlock My Heart 🔑</h3>
+    <input type="password" id="secretCode" class="pass-input" placeholder="••••" maxlength="4">
+    <br>
+    <button class="pass-btn" onclick="verifyPassword()">Unlock Love ✨</button>
+    <div id="errorMsg" class="error-msg">Khoto Password! Pachhu Try Kar 🥺</div>
+  </div>
+</div>
+
+<!-- Audios -->
+<audio id="birthdaySong" src="images/birthday.mp3"></audio>
+<audio id="bgMusic"></audio>
+<audio id="clapSound" src="images/clap.mp3"></audio>
+<audio id="kissSound" src="https://assets.mixkit.co/active_storage/sfx/2874/2874-preview.mp3"></audio>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- 🖼️ Background Floating Polaroid Photo Frames -->
+<div class="bg-photo-frame bg-frame-left" id="bgFrameLeft">
+  <img id="bgImgLeft" src="images/punit1.jpg" alt="Left Background Photo">
+  <span id="bgCaptionLeft">Together Forever 💕</span>
+</div>
+
+<div class="bg-photo-frame bg-frame-right" id="bgFrameRight">
+  <img id="bgImgRight" src="images/punit2.jpg" alt="Right Background Photo">
+  <span id="bgCaptionRight">Sweet Smiles 😍</span>
+</div>
+
+<!-- 3D Book -->
+<div class="book" id="book">
+
+  <!-- PAGE 1: Cake & Interactive Teddy Page -->
+  <div class="page active">
+    <h3>Happy Birthday My Everything 🎂</h3>
+    <p class="heart-quote">"Tari ek pyaari smile maro aakho divas roshan kari de chhe..."</p>
+    
+    <div class="teddy-container">
+      <div class="teddy-bear" onclick="hugTeddy(); event.stopPropagation();">🧸</div>
+      <div class="teddy-banner" id="teddyBanner">I Love You Punit! 💖</div>
+    </div>
+
+    <div class="cake" onclick="blowCandles(); event.stopPropagation();">
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <div class="layer top"></div>
+      <div class="layer middle"></div>
+      <div class="layer"></div>
+      <div class="plate"></div>
+      <p class="tap-hint">Teddy par tap karo or Cake blow karo ✨🕯️</p>
+    </div>
+  </div>
+
+  <!-- PAGE 2: Romantic Love Letter & Kiss Bar -->
+  <div class="page" onclick="nextPage()">
+    <h2>Happy Birthday My King 👑❤️</h2>
+    <p class="heart-quote">"Tu mara mate khali ek maasum prem nathi, mari aakhi duniya chhe..."</p>
+    <p>Hiee My Love!! Happy Birthday My Heartbeat... 🌹✨🌻❤️<br><br>
+    On your special day, I want to tell you that you are the best thing that ever happened to me. Thank you for all the sweet warm hugs 🤗 and endless magical memories.</p>
+    
+    <div class="love-action-bar" onclick="event.stopPropagation();">
+      <button class="mini-love-btn" onclick="triggerLoveBurst('💋')">Send Kisses 💋</button>
+      <button class="mini-love-btn" onclick="triggerLoveBurst('🫂')">Send Hugs 🫂</button>
+    </div>
+
+    <p style="margin-top:10px;">May your cute smile never fade! I promise to stand by your side in every step of life..💖🌷<br><br>
+    <strong>HAPPY BIRTHDAY MY SOULMATE!! 💝🫀✨</strong><br>
+    ~ Always & Forever Yours.. 💍💞</p>
+    <p class="tap-hint">Special Video Message jova touch karo... 👉</p>
+  </div>
+
+  <!-- PAGE 3: 🎥 Chandni's Special Video Message -->
+  <div class="page" onclick="nextPage()">
+    <h3>A Message From My Heart 🎥💖</h3>
+    <p class="romantic-line">"Khass tara mate ek pyaaro video message..."</p>
+    
+    <div class="video-container" onclick="event.stopPropagation();">
+      <video id="chandniVideo" controls playsinline preload="metadata">
+        <source src="images/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <p class="tap-hint" style="margin-top:15px;">Scratch Card jova touch karo... 👉</p>
+  </div>
+
+  <!-- PAGE 4: 🪙 Scratch My Heart Card -->
+  <div class="page" onclick="nextPage()">
+    <h3>Scratch My Heart 🪙</h3>
+    <p class="romantic-line">Finger thi card scratch karo and secret surprise dekho! ✨</p>
+    
+    <div class="scratch-container" onclick="event.stopPropagation();">
+      <div class="scratch-secret">
+        <img src="images/punit1.jpg" alt="Cute Memory">
+        <p>Punit, tu mara dil ni sabse khubsurat chiz chhe! 💖💍</p>
+      </div>
+      <canvas id="scratchCanvas" width="220" height="130"></canvas>
+    </div>
+
+    <p class="tap-hint" style="margin-top:20px;">Secret Mirror jova touch karo... 👉</p>
+  </div>
+
+  <!-- PAGE 5: 🪞 Secret Love Mirror -->
+  <div class="page" onclick="nextPage()">
+    <h3>Who Is My Whole World? 🪞</h3>
+    
+    <div class="mirror-box">
+      <div class="mirror-placeholder" id="mirrorPlaceholder">🪞</div>
+      <video id="mirrorVideo" class="mirror-video" autoplay playsinline muted></video>
+    </div>
+
+    <div style="text-align:center;" onclick="event.stopPropagation();">
+      <button class="mini-love-btn" onclick="openLoveMirror()">Click to see my whole world ✨</button>
+    </div>
+    
+    <p id="mirrorMessage" class="heart-quote" style="display:none; margin-top:10px;">Yes, it's YOU! 💖👑</p>
+    
+    <p class="tap-hint" style="margin-top:15px;">Next page mate tap karo... 👉</p>
+  </div>
+
+  <!-- PAGE 6: Game Page -->
+  <div class="page" onclick="event.stopPropagation();">
+    <h3>Punit & Chandni ❌⭕</h3>
+    <p class="romantic-line" id="ttt-status">Your turn My Love (Punit: X)</p>
+    <div class="game-box">
+      <div class="ttt-grid">
+        <div class="ttt-cell" onclick="playTTT(0, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(1, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(2, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(3, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(4, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(5, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(6, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(7, this)"></div>
+        <div class="ttt-cell" onclick="playTTT(8, this)"></div>
+      </div>
+      <button onclick="resetTTT()" style="padding:6px 16px; border-radius:15px; border:none; background:var(--primary-pink); color:white; font-size:12px; cursor:pointer;">Reset Game</button>
+    </div>
+
+    <div style="text-align:center; margin-top:10px;">
+      <button class="mini-love-btn" onclick="startCatchGame()" style="padding:8px 18px; font-size:12px;">Play Catch My Heart 💖 Game</button>
+    </div>
+
+    <br>
+    <div style="text-align:center;">
+      <button class="action-btn" onclick="event.stopPropagation(); openGallery();">Aapna Sweet Moments 📸</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- 🎯 Catch My Heart Overlay Game -->
+<div id="catchGameOverlay">
+  <div class="game-header">
+    <h3>Catch My Heart! 💖</h3>
+    <p>Score 10 Hearts to unlock a Secret Surprise! ✨</p>
+    <h4>Score: <span id="catchScore">0</span> / 10 | Time Left: <span id="catchTimer">15</span>s</h4>
+  </div>
+</div>
+
+<!-- 🎁 Secret Message Modal -->
+<div id="secretMessageModal">
+  <div class="secret-modal-content">
+    <h2>Secret Unlocked! 💖🎉</h2>
+    <p class="heart-quote">"Punit, tu mari aakhi duniya chhe. Hu tane aakhi zindagi aam j prem karti rahis! 💍✨"</p>
+    <div style="margin-top: 15px; border-radius: 12px; overflow: hidden;">
+      <img src="images/punit1.jpg" alt="Secret Love Memory" style="width: 100%; border-radius: 10px; display: block;">
+    </div>
+    <button class="action-btn" style="margin-top:15px;" onclick="closeSecretModal()">Close Note ❤️</button>
+  </div>
+</div>
+
+<!-- 📸 Main Gallery Screen (Couple Photos 2 to 6) -->
+<div class="galleryPage" id="galleryPage">
+  <div class="hearts" id="galleryHearts"></div>
+  <h2>Aapni Beautiful Memories 💙</h2>
+  <p style="text-align: center; color: #ffdeeb; font-style: italic; margin-top:-10px;">Tara sathe bitaveli har ek second ek sapna jevi khubsurat chhe...</p>
+  
+  <div class="gallery">
+    <div class="gallery-card" style="--r: -4">
+      <img src="images/punit2.jpg" alt="Couple Memory 2">
+      <span>Mari Aakhi Duniya 🌍</span>
+    </div>
+    <div class="gallery-card" style="--r: 3">
+      <img src="images/punit3.jpg" alt="Couple Memory 3">
+      <span>Te Sweetest Smile 😍</span>
+    </div>
+    <div class="gallery-card" style="--r: -2">
+      <img src="images/punit4.jpg" alt="Couple Memory 4">
+      <span>Ek Beeja Mate Banela 💑</span>
+    </div>
+    <div class="gallery-card" style="--r: 5">
+      <img src="images/punit5.jpg" alt="Couple Memory 5">
+      <span>Pyar Ki Mithaas 💖</span>
+    </div>
+    <div class="gallery-card" style="--r: -3; grid-column: span 2; max-width: 200px; margin: 0 auto;">
+      <img src="images/punit6.jpg" alt="Couple Memory 6">
+      <span>Hamesha Mate Sathe ♾️</span>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top: 25px;">
+    <button class="action-btn" onclick="openChandniGallery()" style="background: linear-gradient(135deg, #ff007f, #ff4d6d);">Queen Chandni's Gallery 👑✨</button>
+  </div>
+  
+  <div class="btn-container" style="margin-top: 20px; margin-bottom: 30px;">
+    <button class="action-btn" onclick="closeGallery()" style="background: white; color: var(--primary-pink);">Back to Book 💖</button>
+  </div>
+</div>
+
+<!-- 👑 Queen Chandni's 15 Single Photos Gallery -->
+<div class="galleryPage" id="chandniGalleryPage">
+  <h2>Mara Pics👑💖</h2>
+  <p style="text-align: center; color: #ffdeeb; font-style: italic; margin-top:-10px;">Punit's Most Favorite Smile in the World! 😍</p>
+  
+  <div class="gallery">
+    <div class="gallery-card" style="--r: -2"><img src="images/chandni1.jpg" alt="Chandni 1"><span>My Princess 💖</span></div>
+    <div class="gallery-card" style="--r: 3"><img src="images/chandni2.jpg" alt="Chandni 2"><span>Cute Smile 😍</span></div>
+    <div class="gallery-card" style="--r: -4"><img src="images/chandni3.jpg" alt="Chandni 3"><span>Beauty Queen 👑</span></div>
+    <div class="gallery-card" style="--r: 2"><img src="images/chandni4.jpg" alt="Chandni 4"><span>My Happiness ✨</span></div>
+    <div class="gallery-card" style="--r: -3"><img src="images/chandni5.jpg" alt="Chandni 5"><span>Heartbeat 💓</span></div>
+    <div class="gallery-card" style="--r: 4"><img src="images/chandni6.jpg" alt="Chandni 6"><span>Angel Smile 👼</span></div>
+    <div class="gallery-card" style="--r: -2"><img src="images/chandni7.jpg" alt="Chandni 7"><span>My Soulmate 🌷</span></div>
+    <div class="gallery-card" style="--r: 3"><img src="images/chandni8.jpg" alt="Chandni 8"><span>So Cuteee 🥺</span></div>
+    <div class="gallery-card" style="--r: -4"><img src="images/chandni9.jpg" alt="Chandni 9"><span>Pure Love 💕</span></div>
+    <div class="gallery-card" style="--r: 2"><img src="images/chandni10.jpg" alt="Chandni 10"><span>Forever Mine 💍</span></div>
+    <div class="gallery-card" style="--r: -3"><img src="images/chandni11.jpg" alt="Chandni 11"><span>Sweetest Eyes 👀</span></div>
+    <div class="gallery-card" style="--r: 4"><img src="images/chandni12.jpg" alt="Chandni 12"><span>My Universe 🌌</span></div>
+    <div class="gallery-card" style="--r: -2"><img src="images/chandni13.jpg" alt="Chandni 13"><span>Lovely Queen 👑</span></div>
+    <div class="gallery-card" style="--r: 3"><img src="images/chandni14.jpg" alt="Chandni 14"><span>Dream Girl 💭</span></div>
+    <div class="gallery-card" style="--r: -1; grid-column: span 2; max-width: 200px; margin: 0 auto;"><img src="images/chandni15.jpg" alt="Chandni 15"><span>Always Smile Like This! 😊</span></div>
+  </div>
+
+  <div class="btn-container" style="margin-top: 30px; margin-bottom: 30px;">
+    <button class="action-btn" onclick="closeChandniGallery()" style="background: white; color: var(--primary-pink);">Back to Main Gallery 📸</button>
+  </div>
+</div>
+
+<!-- JS File Link -->
+<script src="script.js"></script>
+</body>
+</html>
